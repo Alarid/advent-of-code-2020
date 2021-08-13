@@ -1,11 +1,7 @@
-const fs = require("fs")
-const path = require("path")
-
-const filePath = path.join(__dirname, "./", "input.txt")
-const content = fs.readFileSync(filePath, "utf-8")
-const lines = content.split(/\r?\n/)
+const parseInputs = require("../utils/parseInputs")
 
 // Find three lines that sum up to 2020
+const lines = parseInputs("../day1/input.txt")
 let results = []
 lines.find((num1) =>
   lines.find((num2) =>

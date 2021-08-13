@@ -1,19 +1,16 @@
-const fs = require("fs")
-const path = require("path")
+const parseInputs = require("../utils/parseInputs")
 
-const filePath = path.join(__dirname, "./", "input.txt")
-const content = fs.readFileSync(filePath, "utf-8")
-const lines = content.split(/\r?\n/)
+// Find two lines that sum
+const lines = parseInputs("../day1/input.txt")
+let results = []
+lines.find((num1) =>
+  lines.find((num2) => {
+    if (parseInt(num1) + parseInt(num2) === 2020) {
+      results = [num1, num2]
+      return true
+    }
+  })
+)
 
-let result
-lines.every((line) => {
-  const currentNumber = parseInt(line)
-  const res = lines.find((number) => currentNumber + parseInt(number) === 2020)
-  if (res) {
-    result = currentNumber * parseInt(res)
-    return false
-  }
-  return true
-})
-
+const result = results.map(Number).reduce((acc, num) => acc * num, 1)
 console.log(result)
